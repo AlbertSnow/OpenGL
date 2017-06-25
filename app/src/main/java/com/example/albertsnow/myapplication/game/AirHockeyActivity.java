@@ -1,12 +1,17 @@
-package com.example.albertsnow.myapplication;
+package com.example.albertsnow.myapplication.game;
 
+import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.example.albertsnow.myapplication.view.MyGLSurfaceView;
+import com.example.albertsnow.myapplication.view.AirHockeyView;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by albertsnow on 6/22/17.
+ */
+
+public class AirHockeyActivity extends Activity {
+
     private GLSurfaceView mGLView;
 
     @Override
@@ -16,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mGLView = new MyGLSurfaceView(this);
+        mGLView = new AirHockeyView(this);
         setContentView(mGLView );
     }
 

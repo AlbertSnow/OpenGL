@@ -2,7 +2,7 @@ package com.example.albertsnow.myapplication.shape;
 
 import android.opengl.GLES20;
 
-import com.example.albertsnow.myapplication.view.MyGLSurfaceView;
+import com.example.albertsnow.myapplication.view.MyGLRenderer;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -19,15 +19,15 @@ public class Square {
     private FloatBuffer vertexBuffer;
     private ShortBuffer drawListBuffer;
 
-    static final int COORDS_PER_VERTEX = 3;
-    static float squareCoords[] = {
+    private static final int COORDS_PER_VERTEX = 3;
+    private static float squareCoords[] = {
             -0.5f, 0.5f, 0.0f, //top left
             -0.5f, -0.5f, 0.0f, //bottom left
             0.5f, -0.5f, 0.0f, //bottom right
             0.5f, 0.5f, 0.0f}; //top right
 
     private short drawOrder[] = { 0, 1, 2, 0, 2, 3 }; //order to draw vertex
-    float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+    private float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
 
     public Square() {
         // initialize vertex byte buffer for shape coordinates
@@ -48,9 +48,9 @@ public class Square {
         drawListBuffer.put(drawOrder);
         drawListBuffer.position(0);
 
-        int vertexShader = MyGLSurfaceView.MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+        int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
                 vertexShaderCode);
-        int fragmentShader = MyGLSurfaceView.MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+        int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
                 fragmentShaderCode);
 
         mProgram = GLES20.glCreateProgram();
