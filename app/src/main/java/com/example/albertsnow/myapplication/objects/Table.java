@@ -1,4 +1,4 @@
-package com.example.albertsnow.myapplication.shape;
+package com.example.albertsnow.myapplication.objects;
 
 import android.opengl.GLES20;
 

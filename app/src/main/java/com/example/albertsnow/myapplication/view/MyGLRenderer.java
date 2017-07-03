@@ -5,8 +5,8 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
 
-import com.example.albertsnow.myapplication.shape.Square;
-import com.example.albertsnow.myapplication.shape.Triangle;
+import com.example.albertsnow.myapplication.objects.Square;
+import com.example.albertsnow.myapplication.objects.Triangle;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
