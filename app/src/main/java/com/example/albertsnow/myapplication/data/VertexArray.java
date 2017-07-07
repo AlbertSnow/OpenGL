@@ -34,6 +34,9 @@ public class VertexArray {
     }
 
 
-
-
+    public void updateBuffer(float[] vertexData, int start, int count) {
+        floatBuffer.position(start);
+        floatBuffer.put(vertexData, start, count);
+        floatBuffer.position(0);
+    }
 }

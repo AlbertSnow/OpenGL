@@ -11,6 +11,7 @@ import com.example.albertsnow.myapplication.objects.Puck;
 import com.example.albertsnow.myapplication.objects.Table;
 import com.example.albertsnow.myapplication.programs.ColorShaderProgram;
 import com.example.albertsnow.myapplication.programs.TextureShaderProgram;
+import com.example.albertsnow.myapplication.util.Geometry;
 import com.example.albertsnow.myapplication.util.MatrixHelper;
 import com.example.albertsnow.myapplication.util.TextureHelper;
 
@@ -40,6 +41,10 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
 
     private Puck puck;
 
+    private boolean malletPress = false;
+    private Geometry.Point blueMalletPosition;
+    private final float[] invertedViewProjectionMatrix = new float[16];
+
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -53,6 +58,8 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         colorShaderProgram = new ColorShaderProgram(MyApplication.getApplication());
 
         texture = TextureHelper.loadTexture(R.drawable.air_hockey_surface);
+
+        blueMalletPosition = new Geometry.Point(0f, mallet.height / 2f, 0.4f);
     }
 
 
@@ -70,6 +77,8 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
+        inverteM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
+
 
         positionTableInScene();
         textureShaderProgram.useProgram();
@@ -96,6 +105,10 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         puck.draw();
     }
 
+    private void inverteM(float[] invertedViewProjectionMatrix, int i, float[] viewProjectionMatrix, int i1) {
+
+    }
+
     private void positionTableInScene(float x, float y, float z) {
         Matrix.setIdentityM(modelMatrix, 0);
         Matrix.translateM(modelMatrix, 0, x, y, z);
@@ -111,4 +124,33 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     }
 
 
+    public void handleTouchPress(float normalizedX, float normalizedY) {
+//        Ray ray = converNormallized2DPointToRay(normalizedX, normalizedY);
+//        Sphere malletBoundingSphere = new Sphere(new Geometry.Point(
+//                blueMalletPosition.x,
+//                blueMalletPosition,y,
+//                blueMalletPosition.z),
+//                mallet.height / 2f
+//        );
+//
+//        malletPress = Geometry.intersects(malletBoundingSphere, ray);
+    }
+
+//    private Ray converNormallized2DPointToRay(float normalizedX, float normalizedY) {
+//        final float[] nearPointNdc = {normalizedX, normalizedY, -1, 1};
+//        final float[] farPointNdc = {normalizedX, normalizedY, 1, 1};
+//
+//        final float[] nearPointWorld = new float[4];
+//        final float[] farPointWorld = new float[4];
+//
+//        Matrix.multiplyMV(
+//                nearPointWorld, 0, invertedViewProjectionMatrix, 0, nearPointNdc, 0);
+//        Matrix.multiplyMV(
+//                farPointWorld, 0, invertedViewProjectionMatrix, 0, farPointNdc, 0);
+//
+//
+//    }
+
+    public void handleTouchDrag(float normalizedX, float normalizedY) {
+    }
 }
