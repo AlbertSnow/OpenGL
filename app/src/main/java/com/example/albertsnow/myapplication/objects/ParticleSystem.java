@@ -2,7 +2,6 @@ package com.example.albertsnow.myapplication.objects;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
-import android.util.Log;
 
 import com.example.albertsnow.myapplication.data.VertexArray;
 import com.example.albertsnow.myapplication.programs.ParticleShaderProgram;
@@ -69,11 +68,6 @@ public class ParticleSystem {
         particles[currentOffset++] = particleStartTime;
 
         vertexArray.updateBuffer(particles, particleOffset, TOTAL_COMPONENT_COUNT);
-
-        Log.i(TAG, "add particles, size: " + nextParticle);
-        Log.i(TAG, "add particles, x: " + position.x);
-        Log.i(TAG, "add particles, y: " + position.y);
-        Log.i(TAG, "add particles, z: " + position.z);
     }
 
 
